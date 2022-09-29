@@ -41,6 +41,7 @@ func (lista *listaEnlazada[T]) BorrarPrimero() T {
 	if lista.EstaVacia() {
 		panic("lista vacia")
 	}
+	dato := lista.primero.dato
 	siguiente := lista.primero.siguiente
 	lista.primero.siguiente = nil
 	lista.primero = siguiente
@@ -48,6 +49,7 @@ func (lista *listaEnlazada[T]) BorrarPrimero() T {
 	if lista.primero == nil {
 		lista.ultimo = nil
 	}
+	return dato
 }
 
 func (lista *listaEnlazada[T]) VerPrimero() T {
