@@ -1,5 +1,18 @@
 package lista
 
+type IteradorLista[T any] interface {
+	//Hace que el iterador apunte al siguiente nodo
+	Siguiente() T
+	// Devuelve true si el siguiente nodo no apunta a nil. Devuelve false en caso contrario
+	HaySiguiente() bool
+	//Devuelve el dato del nodo al cual el iterador esta apuntando
+	VerActual() T
+	//Recibe un dato e inserta un nodo con el dato recibido entre el nodo anterior del iterador y el actual. El iterador termina apuntando al nuevo nodo
+	Insertar(T)
+	// Se borra el nodo al cual el iterador está apuntando. El iterador termina apuntando al nodo siguiente
+	Borrar() T
+}
+
 type Lista[T any] interface {
 
 	// EstaVacia() devuelve true si no hay elementos en la lista, false en caso contrario
@@ -26,6 +39,5 @@ type Lista[T any] interface {
 	//Itera por todos los elementos de la lista
 	Iterar(visitar func(T) bool)
 
-	// CREAMOS EL ITERADOR - DESCOMENTAR LUEGO
-	//Iterador() IteradorLista[T]
+	Iterador() IteradorLista[T]
 }
