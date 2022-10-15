@@ -1,9 +1,10 @@
 package lista_test
 
 import (
-	"github.com/stretchr/testify/require"
 	TDALista "lista"
 	"testing"
+
+	"github.com/stretchr/testify/require"
 )
 
 const VALOR_PRUEBA = 1
@@ -116,6 +117,7 @@ func TestTresElementos(t *testing.T) {
 
 func TestBorrarUltimo(t *testing.T) {
 	lista := TDALista.CrearListaEnlazada[int]()
+	lista.EstaVacia()
 	for i := 0; i < 5; i++ {
 		lista.InsertarUltimo(i)
 	}
@@ -133,5 +135,4 @@ func TestBorrarUltimo(t *testing.T) {
 	iterador.Siguiente()
 	require.EqualValues(t, 4, iterador.Borrar())
 	require.EqualValues(t, 3, lista.VerUltimo())
-
 }

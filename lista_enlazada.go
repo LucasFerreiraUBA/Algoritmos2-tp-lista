@@ -36,14 +36,12 @@ func (lista listaEnlazada[T]) EstaVacia() bool {
 }
 
 func (lista *listaEnlazada[T]) InsertarPrimero(elem T) {
-	nuevo_nodo := crearNodo[T](elem)
+	nuevo_nodo := crearNodo(elem)
 	lista.largo++
-	if lista.EstaVacia() {
-		lista.primero = nuevo_nodo
+	nuevo_nodo.siguiente = lista.primero
+	lista.primero = nuevo_nodo
+	if lista.largo == 1 {
 		lista.ultimo = lista.primero
-	} else {
-		nuevo_nodo.siguiente = lista.primero
-		lista.primero = nuevo_nodo
 	}
 }
 
@@ -52,7 +50,7 @@ func (lista *listaEnlazada[T]) InsertarUltimo(elem T) {
 		lista.InsertarPrimero(elem)
 		return
 	}
-	nuevo_nodo := crearNodo[T](elem)
+	nuevo_nodo := crearNodo(elem)
 	lista.ultimo.siguiente = nuevo_nodo
 	lista.ultimo = nuevo_nodo
 	lista.largo++
@@ -64,7 +62,6 @@ func (lista *listaEnlazada[T]) BorrarPrimero() T {
 	}
 	dato := lista.primero.dato
 	siguiente := lista.primero.siguiente
-	lista.primero.siguiente = nil
 	lista.primero = siguiente
 	if lista.primero == nil {
 		lista.ultimo = nil
